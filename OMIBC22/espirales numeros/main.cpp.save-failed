@@ -1,0 +1,110 @@
+#include <iostream>
+
+using namespace std;
+
+int mayor=0;
+int a[105][105]={0};
+int apoyo;
+
+int buscarN(int y,int x,int tamano,int veces,int it){
+    for(int i=veces;i>0;i--){
+        apoyo=a[y][x]
+        y++;
+        if(a[y][x]>apoyo){
+            tamano++;
+        }else{
+            return tamano;
+        }
+    }
+    it--;
+    if(it<=0){
+        veces++;
+        it=2;
+    }
+    buscarE(y,x,tamano,veces,it);
+}
+int buscarE(int y,int x,int tamano,int veces,int it){
+    for(int i=veces;i>0;i--){
+        apoyo=a[y][x]
+        x++;
+        if(a[y][x]>apoyo){
+            tamano++;
+        }else{
+            return tamano;
+        }
+    }
+    it--;
+    if(it<=0){
+        veces++;
+        it=2;
+    }
+    buscarS(y,x,tamano,veces,it);
+}
+int buscarS(int y,int x,int tamano,int veces,int it){
+    for(int i=veces;i>0;i--){
+        apoyo=a[y][x]
+        x--;
+        if(a[y][x]>apoyo){
+            tamano++;
+        }else{
+            return tamano;
+        }
+    }
+    it--;
+    if(it<=0){
+        veces++;
+        it=2;
+    }
+    buscarE(y,x,tamano,veces,it);
+}
+int buscarO(int y,int x,int tamano,int veces,int it){
+    for(int i=veces;i>0;i--){
+        apoyo=a[y][x]
+        x--;
+        if(a[y][x]>apoyo){
+            tamano++;
+        }else{
+            return tamano;
+        }
+    }
+    it--;
+    if(it<=0){
+        veces++;
+        it=2;
+    }
+    buscarE(y,x,tamano,veces,it);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            cin>>a[i][j];
+        }
+    }
+    int mayor=0,r;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            r=buscarN(i,j,1,1,2);
+            if(r>mayor){
+                mayor=r;
+            }
+            r=buscarE(i,j,1,1,2);
+            if(r>mayor){
+                mayor=r;
+            }
+            r=buscarS(i,j,1,1,2);
+            if(r>mayor){
+                mayor=r;
+            }
+            r=buscarO(i,j,1,1,2);
+            if(r>mayor){
+                mayor=r;
+            }
+        }
+    }
+    cout<<mayor;
+    return 0;
+}
